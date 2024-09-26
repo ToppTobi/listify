@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_26_094442) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_26_111149) do
   create_table "dishes", force: :cascade do |t|
     t.string "name"
     t.integer "product_id", null: false
@@ -36,6 +36,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_26_094442) do
     t.string "affiliation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "group_id"
+    t.index ["group_id"], name: "index_products_on_group_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,4 +56,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_26_094442) do
   end
 
   add_foreign_key "dishes", "products"
+  add_foreign_key "products", "groups"
 end
