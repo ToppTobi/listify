@@ -1,0 +1,21 @@
+<h1>Groups</h1>
+
+<%= link_to 'New Group', new_group_path, class: 'btn btn-primary new-group-button' %>
+
+<div id="groups" class="grid-container">
+  <% @groups.each do |group| %>
+    <div class="group-box">
+      <div class="group-content">
+        <h2><%= group.name %></h2>
+        <p><%= group.city %>, <%= group.address %></p>
+        <p><%= group.description %></p>
+      </div>
+
+      <div class="group-actions flex"> <!-- Flexbox für Buttons -->
+        <%= link_to 'View Products', group_path(group), class: 'btn btn-primary' %>
+        <button class="btn btn-secondary" onclick="window.location.href='<%= edit_group_path(group) %>'"> Edit </button>
+        <%= button_to 'Delete', group_path(group), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  <% end %>
+</div>

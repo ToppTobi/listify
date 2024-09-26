@@ -1,0 +1,32 @@
+<h1><%= @group.name %></h1>
+
+<p><%= @group.plz %> - <%= @group.city %>, <%= @group.address %></p>
+<p><%= @group.description %></p>
+
+<h2>Produkte in dieser Gruppe</h2>
+
+<%= link_to 'Neues Produkt hinzufügen', new_group_product_path(@group), class: 'btn btn-primary' %>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Produktname</th>
+    <th>Menge</th>
+    <th>Aktionen</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.product_name %></td>
+      <td><%= product.quantity %></td>
+      <td>
+        <%= link_to 'Bearbeiten', edit_group_product_path(@group, product), class: 'btn btn-warning' %>
+        <%= link_to 'Löschen', group_product_path(@group, product), method: :delete, data: { confirm: 'Bist du sicher?' }, class: 'btn btn-danger' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Zurück zu den Gruppen', groups_path, class: 'btn btn-secondary' %>
