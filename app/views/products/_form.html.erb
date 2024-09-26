@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="application.css">
+
+
+<%= form_with(model: product) do |form| %>
+  <% if product.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_name, style: "display: block" %>
+    <%= form.text_field :user_name %>
+  </div>
+
+  <div>
+    <%= form.label :product_name, style: "display: block" %>
+    <%= form.text_field :product_name %>
+  </div>
+
+  <div>
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.text_field :quantity %>
+  </div>
+
+  <div>
+    <%= form.label :affiliation, "Choose a color for affiliation:", style: "display: block" %>
+
+    <div class="color-selection">
+      <label>
+        <%= form.radio_button :affiliation, '#7d6b57' %>
+        <span class="color-dot" style="background-color: #7d6b57;"></span>
+      </label>
+      <label>
+        <%= form.radio_button :affiliation, '#c7522a' %>
+        <span class="color-dot" style="background-color: #c7522a;"></span>
+      </label>
+      <label>
+        <%= form.radio_button :affiliation, '#e5c185' %>
+        <span class="color-dot" style="background-color: #e5c185;"></span>
+      </label>
+      <label>
+        <%= form.radio_button :affiliation, '#f0daa5' %>
+        <span class="color-dot" style="background-color: #f0daa5;"></span>
+      </label>
+      <label>
+        <%= form.radio_button :affiliation, '#fbf2c4' %>
+        <span class="color-dot" style="background-color: #fbf2c4;"></span>
+      </label>
+      <label>
+        <%= form.radio_button :affiliation, '#b8cdab' %>
+        <span class="color-dot" style="background-color: #b8cdab;"></span>
+      </label>
+      <label>
+        <%= form.radio_button :affiliation, '#74a892' %>
+        <span class="color-dot" style="background-color: #74a892;"></span>
+      </label>
+      <label>
+        <%= form.radio_button :affiliation, '#008585' %>
+        <span class="color-dot" style="background-color: #008585;"></span>
+      </label>
+    </div>
+  </div>
+
+  <div>
+    <%= form.submit%>
+
+  </div>
+<% end %>

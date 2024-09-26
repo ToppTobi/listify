@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="application.css.css">
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for(:title) || "Listify" %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <header>
+    <% if user_signed_in? %>
+      <%= link_to "Sign out", destroy_user_session_path, class: "log-out-button", data: { turbo_method: :delete } %>
+    <% else %>
+
+            <h2 class="auth-title">Welcome to the site!</h2>
+            <div class="auth-buttons">
+              <%= link_to 'Sign up', new_user_registration_path, class:"log-in-up-button sign-up-position" %>
+              <%= link_to 'Log in', new_user_session_path, class:"log-in-up-button log-in-position" %>
+
+
+        </div>
+    <% end %>
+  </header>
+
+  <%= yield :head %>
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icon.png" type="image/png">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+
+<body>
+<%= yield %>
+</body>
+</html>

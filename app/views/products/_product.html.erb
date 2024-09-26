@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="application.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="product product-item" style="background-color: <%= product.affiliation %>; border: 2px solid <%= product.affiliation %>;">
+  <h2><%= product.product_name %></h2>
+  <p><%= product.quantity %></p>
+  <p><%= product.user_name %></p>
+
+  <div class="product-actions">
+    <%= link_to edit_product_path(product), class: "edit-icon" do %>
+      <i class="fas fa-edit"></i>
+    <% end %>
+
+    <%= link_to product_path(product), method: :delete, class: "delete-icon" do %>
+      <i class="fas fa-trash"></i> <!-- Mülleimer-Icon -->
+    <% end %>
+
+
+  </div>
+</div>
+

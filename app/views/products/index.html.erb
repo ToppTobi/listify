@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="application.css">
+
+<% if user_signed_in? %>
+
+
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Products" %>
+  <header>
+<div class="text_font">
+  <h1 class="title">Einkaufsliste</h1>
+</div>
+  </header>
+<div id="products">
+  <% @products.each do |product| %>
+
+    <%= render product %>
+  <% end %>
+</div>
+
+<%= link_to "Produkt Hinzufügen", new_product_path, class: "new-product-button" %>
+
+<% end %>

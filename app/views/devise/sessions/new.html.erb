@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="application.css">
+
+<div class="auth-container">
+  <div class="auth-content">
+
+    <!-- Nur anzeigen, wenn der Benutzer nicht auf der Login-Seite ist -->
+    <% unless current_page?(new_user_session_path) %>
+      <div class="auth-buttons mb-6">
+        <h2 class="auth-title">Welcome to the site!</h2>
+        <%= link_to 'Sign up', new_user_registration_path, class: "auth-button auth-signup" %>
+        <%= link_to 'Log in', new_user_session_path, class: "auth-button auth-login" %>
+      </div>
+    <% end %>
+
+    <!-- Login-Formular nur auf der Login-Seite anzeigen -->
+    <% if current_page?(new_user_session_path) %>
+      <div class="auth-box">
+        <h2 class="auth-title">Log in</h2>
+
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group">
+            <%= f.label :email, class: "form-label" %>
+            <%= f.email_field :email, autofocus: true, class: "form-input" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password, class: "form-label" %>
+            <%= f.password_field :password, autocomplete: "off", class: "form-input" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me, "Remember me", class: "ml-2" %>
+          </div>
+
+          <%= f.submit "Log in", class: "auth-submit" %>
+        <% end %>
+
+        <div class="mt-4 text-center">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
