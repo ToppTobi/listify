@@ -1,23 +1,25 @@
 <link rel="stylesheet" href="application.css">
 
 <% if user_signed_in? %>
+  <p style="color: green"><%= notice %></p>
 
 
-<p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Products" %>
   <header>
-<div class="text_font">
-  <h1 class="title">Einkaufsliste</h1>
-</div>
+    <div class="text_font">
+      <%= link_to 'Zurück', groups_path, class: 'back-button' %>
+      <h1 class="title">Einkaufsliste für <%= @group.name %></h1>
+    </div>
   </header>
-<div id="products">
-  <% @products.each do |product| %>
 
-    <%= render product %>
-  <% end %>
-</div>
+  <div id="products">
+    <% @products.each do |product| %>
+      <%= render product %>
+    <% end %>
+  </div>
 
-<%= link_to "Produkt Hinzufügen", new_product_path, class: "new-product-button" %>
+  <%= link_to "Produkt Hinzufügen", new_group_product_path(@group), class: "new-product-button" %>  <!-- Link zum Erstellen eines neuen Produkts innerhalb der Gruppe -->
 
+<% else %>
+  <p>Bitte melde dich an, um die Produkte zu sehen.</p>
 <% end %>
