@@ -15,7 +15,7 @@
 1. **Repository klonen**
 
    ```bash
-   git clone https://github.com/username/listify.git
+   git clone https://github.com/topptobi/listify.git
    cd listify
    ```
 2. **Abhängigkeiten installieren**
