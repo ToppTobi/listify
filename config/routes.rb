@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
-  devise_for :users
+  get "activity_logs/index"
 
-  # Entferne die einzelnen get-Routen für groups
+  devise_for :users, controllers: {
+    sessions: "users/sessions",
+    registrations: "users/registrations",
+    passwords: "users/passwords",
+    confirmations: "users/confirmations"
+  }
+
+  resources :users, except: [:new, :create]
+
   resources :groups do
-    resources :products  # Verschachtelte Routen für Produkte innerhalb der Gruppe
+    resources :products
   end
 
-
+  resources :activity_logs, only: [:index]
 
   root to: "groups#index"
 

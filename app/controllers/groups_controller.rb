@@ -1,5 +1,6 @@
 # app/controllers/groups_controller.rb
 class GroupsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -8,6 +9,14 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+  end
+
+  def update
+    if @group.update(group_params)
+      redirect_to groups_path, notice: 'Die Gruppe wurde erfolgreich aktualisiert.'
+    else
+      render :edit
+    end
   end
 
   def create

@@ -1,0 +1,28 @@
+<h1>Benutzerprofil bearbeiten</h1>
+
+<%= form_for @user do |f| %>
+
+  <div class="field">
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, 'Neues Passwort (optional)' %>
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, 'Passwortbestätigung' %>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Änderungen speichern', class: 'btn btn-primary' %>
+  </div>
+<% end %>

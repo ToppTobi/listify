@@ -21,8 +21,11 @@
       <td><%= product.product_name %></td>
       <td><%= product.quantity %></td>
       <td>
-        <%= link_to 'Bearbeiten', edit_group_product_path(@group, product), class: 'btn btn-warning' %>
-        <%= link_to 'Löschen', group_product_path(@group, product), method: :delete, data: { confirm: 'Bist du sicher?' }, class: 'btn btn-danger' %>
+        <% if user_signed_in? %>
+          <%= link_to 'Edit', edit_group_path(group), class: 'btn btn-secondary' %>
+          <%= button_to 'Delete', group_path(group), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        <% end %>
+
       </td>
     </tr>
   <% end %>
